@@ -22,10 +22,10 @@ function getCardData() {
     offer: {
       title: `Я заголовок номер ${getRandomPositiveInteger(1, 100)}`,
       address: `${location.lat}, ${location.lng}`,
-      price: `${getRandomPositiveInteger(100, 500)}`,
+      price: `${getRandomPositiveInteger(0, 100000)}`,
       type: `${APARTMENT_TYPES[getRandomIndex(APARTMENT_TYPES)]}`,
-      rooms: getRandomPositiveInteger(1, 5),
-      guests: getRandomPositiveInteger(1, 4),
+      rooms: getRandomPositiveInteger(1, 3),
+      guests: getRandomPositiveInteger(1, 3),
       checkin: `${TIME_POINTS[getRandomIndex(TIME_POINTS)]}`,
       checkout: `${TIME_POINTS[getRandomIndex(TIME_POINTS)]}`,
       features: getRandomArrayLength(CONVENIENCES),
@@ -37,6 +37,6 @@ function getCardData() {
   };
 }
 
-const createArrayOfObjects = Array.from({length: OBJECTS_COUNT}, getCardData);
+const createArrayOfObjects = () => Array.from({length: OBJECTS_COUNT}, (_, index) => getCardData(index));
 
 export {createArrayOfObjects};
