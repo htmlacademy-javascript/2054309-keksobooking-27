@@ -4,7 +4,7 @@ const cardTemplate = document.querySelector('#card').content.querySelector('.pop
 const cardsData = createArrayOfObjects();
 const cardsDataFragment = document.createDocumentFragment();
 
-const offerType = {
+const OFFER_TYPE = {
   flat: 'Квартира',
   bungalow: 'Бунгало',
   house: 'Дом',
@@ -12,7 +12,7 @@ const offerType = {
   hotel: 'Отель'
 };
 
-cardsData.forEach(({ author, offer }) => {
+cardsData.forEach(({author, offer}) => {
   const cardAdElement = cardTemplate.cloneNode(true);
 
   const hideSelector = (selector) => cardAdElement.querySelector(selector).remove();
@@ -35,7 +35,7 @@ cardsData.forEach(({ author, offer }) => {
   renderData('.popup__title', offer.title);
   renderData('.popup__text--address', offer.address);
   renderData('.popup__text--price', offer.price, ' ₽/ночь');
-  renderData('.popup__type', offerType[offer.type]);
+  renderData('.popup__type', OFFER_TYPE[offer.type]);
   renderData('.popup__description', offer.description);
 
   if (!offer.rooms || !offer.guests) {
