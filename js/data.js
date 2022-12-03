@@ -1,4 +1,4 @@
-import {getRandomPositiveFloat, transformImgNumber, countImgNumber, getRandomPositiveInteger, getRandomIndex, getRandomArrayLength} from './util.js';
+import {getRandomPositiveFloat, transformImgNumber, countImgNumber, getRandomPositiveInteger, getRandomArrayElement, getRandomArrayLength} from './util.js';
 
 const APARTMENT_TYPES = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
 const TIME_POINTS = ['12:00', '13:00', '14:00'];
@@ -7,6 +7,14 @@ const PHOTO_ADDRESSES = ['https://assets.htmlacademy.ru/content/intensive/javasc
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
 const OBJECTS_COUNT = 10;
+
+const OFFER_TYPE = {
+  flat: 'Квартира',
+  bungalow: 'Бунгало',
+  house: 'Дом',
+  palace: 'Дворец',
+  hotel: 'Отель'
+};
 
 function getCardData() {
   const location = {
@@ -23,11 +31,11 @@ function getCardData() {
       title: `Я заголовок номер ${getRandomPositiveInteger(1, 100)}`,
       address: `${location.lat}, ${location.lng}`,
       price: `${getRandomPositiveInteger(0, 100000)}`,
-      type: `${APARTMENT_TYPES[getRandomIndex(APARTMENT_TYPES)]}`,
+      type: OFFER_TYPE[getRandomArrayElement(APARTMENT_TYPES)],
       rooms: getRandomPositiveInteger(1, 3),
       guests: getRandomPositiveInteger(1, 3),
-      checkin: `${TIME_POINTS[getRandomIndex(TIME_POINTS)]}`,
-      checkout: `${TIME_POINTS[getRandomIndex(TIME_POINTS)]}`,
+      checkin: getRandomArrayElement(TIME_POINTS),
+      checkout: getRandomArrayElement(TIME_POINTS),
       features: getRandomArrayLength(CONVENIENCES),
       description: `Я описание номер ${getRandomPositiveInteger(1, 100)}`,
       photos: getRandomArrayLength(PHOTO_ADDRESSES)

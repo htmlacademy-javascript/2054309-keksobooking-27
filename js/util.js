@@ -23,7 +23,7 @@ const getRandomPositiveFloat = (left, right, digits = 1) => {
 
 const countImgNumber = createCounter();
 
-const getRandomIndex = (arr) => getRandomPositiveInteger(0, arr.length - 1);
+const getRandomArrayElement = (arr) => arr[getRandomPositiveInteger(0, arr.length - 1)];
 const transformImgNumber = (number) => number.toString().padStart(2, '0');
 
 function getRandomArrayLength(arr) {
@@ -46,4 +46,4 @@ function createCounter() {
   };
 }
 
-export {getRandomPositiveFloat, countImgNumber, getRandomIndex, transformImgNumber, getRandomArrayLength, getRandomPositiveInteger};
+export {getRandomPositiveFloat, countImgNumber, getRandomArrayElement, transformImgNumber, getRandomArrayLength, getRandomPositiveInteger};
