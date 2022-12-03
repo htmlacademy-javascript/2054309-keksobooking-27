@@ -15,7 +15,7 @@ const disableInteractiveElements = (elements) => {
 
 const enableInteractiveElements = (elements) => {
   elements.forEach((element) =>
-    element.reomoveAttribute('disabled', 'disabled'));
+    element.removeAttribute('disabled', 'disabled'));
 };
 
 const activatePage = () => {
