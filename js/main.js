@@ -1,3 +1,3 @@
-import {createArrayOfObjects} from './data.js';
+import {renderCard} from './popup.js';
 
-console.log(createArrayOfObjects);
+renderCard();
