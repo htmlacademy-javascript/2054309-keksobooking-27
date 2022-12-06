@@ -16,10 +16,18 @@ const OFFER_TYPE = {
   hotel: 'Отель'
 };
 
+const COORDINATES = {
+  MIN_LAT: 35.65000,
+  MAX_LAT: 35.70000,
+  MIN_LNG: 139.70000,
+  MAX_LNG: 139.80000,
+  COUNT_OF_DECIMALS: 5
+};
+
 function getCardData() {
   const location = {
-    lat: getRandomPositiveFloat(35.65000, 35.70000, 5),
-    lng: getRandomPositiveFloat(139.70000, 139.80000, 5)
+    lat: getRandomPositiveFloat(COORDINATES.MIN_LAT, COORDINATES.MAX_LAT, COORDINATES.COUNT_OF_DECIMALS),
+    lng: getRandomPositiveFloat(COORDINATES.MIN_LNG, COORDINATES.MAX_LNG, COORDINATES.COUNT_OF_DECIMALS)
   };
 
   return {
