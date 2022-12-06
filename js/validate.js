@@ -86,6 +86,7 @@ const initValidateData = () => {
     if (pristine.validate()) {
       offerInformationForm.submit();
     }
-  });};
+  });
+};
 
-export {initValidateData, priceField};
+export {initValidateData, priceField, offerInformationForm, MAX_PRICE};
