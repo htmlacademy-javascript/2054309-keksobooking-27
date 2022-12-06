@@ -77,10 +77,11 @@ cardsData.forEach(({author, offer}) => {
 
   cardsDataFragment.append(cardAdElement);
 });
-
+/*
 const renderCard = () => {
   const canvas = document.querySelector('#map-canvas');
   canvas.append(cardsDataFragment.firstChild);
 };
+*/
+export {cardsData, cardsDataFragment};
 
-export {renderCard};

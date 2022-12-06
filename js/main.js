@@ -1,7 +1,9 @@
-import {activatePage} from './user-form.js';
-import {renderCard} from './popup.js';
 import {initValidateData} from './validate.js';
+import {switchPageState} from './user-form.js';
+import {initMap} from './map.js';
+import {initSlider} from './slider.js';
 
-activatePage();
 initValidateData();
-renderCard();
+switchPageState();
+initMap();
+initSlider();

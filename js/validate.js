@@ -19,9 +19,14 @@ const priceField = offerInformationForm.querySelector('#price');
 const roomsField = offerInformationForm.querySelector('#room_number');
 const capacityField = offerInformationForm.querySelector('#capacity');
 
-const validateTime = () => {
+const validateTimeIn = () => {
   timeOutField.value = timeInField.value;
   return timeInField.value === timeOutField.value;
+};
+
+const validateTimeOut = () => {
+  timeInField.value = timeOutField.value;
+  return timeOutField.value === timeInField.value;
 };
 
 const getPriceErrorMessage = () => `От ${MIN_PRICES_FOR_TYPES[typeField.value]} руб. до ${MAX_PRICE} руб.`;
@@ -60,8 +65,8 @@ const initValidateData = () => {
   pristine.addValidator(titleField, validateTitleField, `Введите от ${MIN_SYMBOLS_VALUE} до ${MAX_SYMBOLS_VALUE} символов`);
   pristine.addValidator(priceField, validatePriceField, getPriceErrorMessage);
   pristine.addValidator(capacityField, validateCapacityField, getRoomsErrorMessage);
-  pristine.addValidator(timeInField, validateTime);
-  pristine.addValidator(timeOutField, validateTime);
+  pristine.addValidator(timeInField, validateTimeIn);
+  pristine.addValidator(timeOutField, validateTimeOut);
 
   typeField.addEventListener('change', () => {
     priceField.placeholder = MIN_PRICES_FOR_TYPES[typeField.value];
@@ -83,4 +88,4 @@ const initValidateData = () => {
     }
   });};
 
-export {initValidateData};
+export {initValidateData, priceField};
