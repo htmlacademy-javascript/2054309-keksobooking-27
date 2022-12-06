@@ -1,16 +1,22 @@
-import {offerInformationForm} from './user-form.js';
-import {priceField} from './validate.js';
-
-const MAXIMUM_PRICE = 100000;
+import {offerInformationForm, MAX_PRICE, priceField} from './validate.js';
 
 const slider = offerInformationForm.querySelector('.ad-form__slider');
 
 const initSlider = () => {
 
+  const pristine = new Pristine(offerInformationForm, {
+    classTo: 'ad-form__element',
+    errorClass: 'ad-form__element--invalid',
+    successClass: 'ad-form__element--valid',
+    errorTextParent: 'ad-form__element',
+    errorTextTag: 'span',
+    errorTextClass: 'text-help'
+  });
+
   noUiSlider.create(slider, {
     range: {
       min: 0,
-      max: MAXIMUM_PRICE
+      max: MAX_PRICE
     },
     start: 0,
     step: 1,
@@ -23,15 +29,6 @@ const initSlider = () => {
         return parseFloat(cost);
       }
     }
-  });
-
-  const pristine = new Pristine(offerInformationForm, {
-    classTo: 'ad-form__element',
-    errorClass: 'ad-form__element--invalid',
-    successClass: 'ad-form__element--valid',
-    errorTextParent: 'ad-form__element',
-    errorTextTag: 'span',
-    errorTextClass: 'text-help'
   });
 
   slider.noUiSlider.on('change', () => {
@@ -53,5 +50,4 @@ const initSlider = () => {
     }
   });
 };
-
 export {initSlider};
