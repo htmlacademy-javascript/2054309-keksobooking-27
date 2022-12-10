@@ -1,10 +1,9 @@
-import {initValidateData} from './validate.js';
 import {switchPageState} from './user-form.js';
-import {initMap} from './map.js';
-import {initSlider} from './slider.js';
+import {renderMarker} from './map.js';
+import {getData} from './api.js';
+import {showErrorModal, showErrorMessage, showSuccessMessage} from './message-templates.js';
+import {setAdFormSubmit} from './send-data.js';
 
-initSlider();
-initValidateData();
 switchPageState();
-initMap();
-
+getData(renderMarker, showErrorModal);
+setAdFormSubmit(showSuccessMessage, showErrorMessage);
