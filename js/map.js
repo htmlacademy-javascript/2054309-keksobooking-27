@@ -1,5 +1,7 @@
 import {renderCardsData} from './popup.js';
-import {switchPageState} from './user-form.js';
+import {OBJECTS_COUNT} from './util.js';
+import {showErrorModal} from './message-templates.js';
+import {getData} from './api.js';
 
 const addressField = document.querySelector('#address');
 
@@ -12,15 +14,7 @@ const mainSettings = {
 
 addressField.value = `${mainSettings.lat.toFixed(mainSettings.numberDecimals)} ${mainSettings.lng.toFixed(mainSettings.numberDecimals)}`;
 
-const map = L.map('map-canvas')
-  .on('load', () => {
-    switchPageState();
-  })
-  .setView({
-    lat: mainSettings.lat,
-    lng: mainSettings.lng
-  }, mainSettings.zoom);
-
+const map = L.map('map-canvas');
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -59,6 +53,9 @@ mainPinMarker.on('move', (evt) => {
   addressField.value = `${latLng.lat.toFixed(mainSettings.numberDecimals)} ${latLng.lng.toFixed(mainSettings.numberDecimals)}`;
 });
 
+const groupOfMarkers = L.layerGroup().addTo(map);
+
+
 const updateMainMarker = () => {
   mainPinMarker.setLatLng({
     lat: mainSettings.lat,
@@ -80,9 +77,15 @@ const renderMarker = (adList) => {
       });
 
     marker
-      .addTo(map)
+      .addTo(groupOfMarkers)
       .bindPopup(renderCardsData(listForRender, index));
   });
 };
 
-export {renderMarker, updateMainMarker};
+const renderStartMarkers = () => {
+  getData((ads) => {
+    renderMarker(ads.slice(0, OBJECTS_COUNT));
+  }, showErrorModal);
+};
+
+export {renderMarker, updateMainMarker, groupOfMarkers, renderStartMarkers, map, mainSettings};
