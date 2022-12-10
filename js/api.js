@@ -1,5 +1,5 @@
 const ApiUrls = {
-  ROOT: 'https://27.javascript.pages.academy/keksobooking1',
+  ROOT: 'https://27.javascript.pages.academy/keksobooking',
   DATA: 'https://27.javascript.pages.academy/keksobooking/data'
 };
 
