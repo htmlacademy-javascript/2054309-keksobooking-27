@@ -2,6 +2,7 @@ import {updateMainMarker} from './map.js';
 import {pristine, setPricePlaceholder, offerInformationForm} from './validate.js';
 import {adFormSlider, resetButton, disableUploadButton, enableUploadButton} from './user-form.js';
 import {sendData} from './api.js';
+import {resetFilters} from './filter.js';
 
 const resetForm = (form) => {
   adFormSlider.noUiSlider.set(0);
@@ -9,6 +10,7 @@ const resetForm = (form) => {
   form.reset();
   setPricePlaceholder();
   updateMainMarker();
+  resetFilters();
 };
 
 resetButton.addEventListener('click', (evt) => {
