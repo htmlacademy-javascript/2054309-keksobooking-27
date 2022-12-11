@@ -1,11 +1,10 @@
 const offerInformationForm = document.querySelector('.ad-form');
-const mapContainer = document.querySelector('.map__filters');
-//const formsFields = document.querySelectorAll('select.map__filter, fieldset');
 const uploadButton = offerInformationForm.querySelector('.ad-form__submit');
 const resetButton = offerInformationForm.querySelector('.ad-form__reset');
 const adFormSlider = offerInformationForm.querySelector('.ad-form__slider');
 const mapFilters = document.querySelector('.map__filters');
 const mapFields = mapFilters.querySelectorAll('select.map__filter');
+const adFormFields = offerInformationForm.querySelectorAll('fieldset');
 
 const switchStateElements = (elements) => {
   elements.forEach = ((element) => {
@@ -21,8 +20,7 @@ const switchStateMapFilters = () => {
 
 const switchStateAdForm = () => {
   offerInformationForm.classList.toggle('ad-form--disabled');
-
-  switchStateElements(mapContainer);
+  switchStateElements(adFormFields);
 };
 
 const switchPageMode = () => {
@@ -40,4 +38,4 @@ const enableUploadButton = () => {
   uploadButton.textContent = 'Опубликовать';
 };
 
-export {switchStateAdForm, switchPageMode, disableUploadButton, enableUploadButton, adFormSlider, resetButton, switchStateMapFilters};
+export {switchPageMode, disableUploadButton, enableUploadButton, adFormSlider, resetButton};

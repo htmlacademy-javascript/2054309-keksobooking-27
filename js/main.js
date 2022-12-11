@@ -1,17 +1,19 @@
-import {switchPageMode, switchStateMapFilters, switchStateAdForm} from './user-form.js';
+import {switchPageMode} from './user-form.js';
 import {renderMarker, map, renderStartMarkers, mainSettings} from './map.js';
 import {getData} from './api.js';
 import {showErrorMessage, showSuccessMessage} from './message-templates.js';
 import {filterOffers, activateFilter} from './filter.js';
 import {setAdFormSubmit} from './send-data.js';
+import {initPhotoBlocks} from './avatar-and-housing-photo.js';
 
-switchPageMode();
+//switchPageMode();
 
 map.on('load', () => {
-  switchStateAdForm();
+  //switchPageMode();
   getData((ads) => {
     renderStartMarkers();
-    switchStateMapFilters();
+    //switchStateMapFilters();
+    switchPageMode();
     activateFilter(() => {
       renderMarker(filterOffers(ads));
     });
@@ -22,4 +24,5 @@ map.on('load', () => {
 }, mainSettings.zoom);
 
 setAdFormSubmit(showSuccessMessage, showErrorMessage);
+initPhotoBlocks();
 

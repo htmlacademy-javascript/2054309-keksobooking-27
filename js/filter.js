@@ -25,35 +25,35 @@ const housingRooms = mapFilters.querySelector('#housing-rooms');
 const housingGuests = mapFilters.querySelector('#housing-guests');
 const featuresCheckboxes = document.querySelectorAll('[name="features"]');
 
-const typeFilter = ({offer}) => {
+const filerByType = ({offer}) => {
   if (housingType.value === 'any') {
     return true;
   }
   return housingType.value === offer.type;
 };
 
-const priceFilter = ({offer}) => {
+const filterByPrice = ({offer}) => {
   if (housingPrice.value === 'any') {
     return true;
   }
   return checkPricesRange(offer.price, PRICE_INTERVALS[housingPrice.value].min, PRICE_INTERVALS[housingPrice.value].max);
 };
 
-const roomsFilter = ({ offer }) => {
+const filterByRooms = ({ offer }) => {
   if (housingRooms.value === 'any') {
     return true;
   }
   return housingRooms.value === offer.rooms.toString();
 };
 
-const guestsFilter = ({ offer }) => {
+const filterByGuests = ({ offer }) => {
   if (housingGuests.value === 'any') {
     return true;
   }
   return housingGuests.value === offer.guests.toString();
 };
 
-const featuresFilter = ({ offer }) =>
+const filterByFeatures = ({ offer }) =>
   Array.from(featuresCheckboxes).every((featureCheckbox) => {
     if (!featureCheckbox.checked) {
       return true;
@@ -88,7 +88,7 @@ const filterOffers = (arr) => {
   const filteredAds = [];
   let i = 0;
   while (filteredAds.length <= OBJECTS_COUNT && i < arr.length) {
-    if (typeFilter(arr[i]) && priceFilter(arr[i]) && roomsFilter(arr[i]) && guestsFilter(arr[i]) && featuresFilter(arr[i])) {
+    if (filerByType(arr[i]) && filterByPrice(arr[i]) && filterByRooms(arr[i]) && filterByGuests(arr[i]) && filterByFeatures(arr[i])) {
       filteredAds.push(arr[i]);
     }
     i++;
