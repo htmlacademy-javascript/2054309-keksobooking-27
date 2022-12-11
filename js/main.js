@@ -6,13 +6,9 @@ import {filterOffers, activateFilter} from './filter.js';
 import {setAdFormSubmit} from './send-data.js';
 import {initPhotoBlocks} from './avatar-and-housing-photo.js';
 
-//switchPageMode();
-
 map.on('load', () => {
-  //switchPageMode();
   getData((ads) => {
     renderStartMarkers();
-    //switchStateMapFilters();
     switchPageMode();
     activateFilter(() => {
       renderMarker(filterOffers(ads));
