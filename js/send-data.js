@@ -3,6 +3,7 @@ import {pristine, setPricePlaceholder, offerInformationForm} from './validate.js
 import {adFormSlider, resetButton, disableUploadButton, enableUploadButton} from './user-form.js';
 import {sendData} from './api.js';
 import {resetFilters} from './filter.js';
+import {resetPhotoFields} from './avatar-and-housing-photo.js';
 
 const resetForm = (form) => {
   adFormSlider.noUiSlider.set(0);
@@ -11,6 +12,7 @@ const resetForm = (form) => {
   setPricePlaceholder();
   updateMainMarker();
   resetFilters();
+  resetPhotoFields();
 };
 
 resetButton.addEventListener('click', (evt) => {
