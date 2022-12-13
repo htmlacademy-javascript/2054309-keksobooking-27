@@ -66,7 +66,7 @@ const updateMainMarker = () => {
 
 const renderMarker = (adList) => {
   const listForRender = adList.slice(0, 10);
-  listForRender.forEach(({ location }, index) => {
+  listForRender.forEach(({location}, index) => {
     const marker = L.marker(
       {
         lat: location.lat,
@@ -78,7 +78,7 @@ const renderMarker = (adList) => {
 
     marker
       .addTo(groupOfMarkers)
-      .bindPopup(renderCardsData(listForRender, index));
+      .bindPopup(renderCardsData(listForRender[index]));
   });
 };
 
