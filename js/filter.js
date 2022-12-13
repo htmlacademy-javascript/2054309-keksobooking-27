@@ -1,10 +1,9 @@
 import {groupOfMarkers, renderStartMarkers} from './map.js';
 import {debounce, checkPricesRange} from './util.js';
-import {OBJECTS_COUNT} from './util.js';
 
 const DEBOUNCE_TIME = 500;
 const PRICE_INTERVALS = {
-  bottom: {
+  low: {
     min: 0,
     max: 10000
   },
@@ -12,7 +11,7 @@ const PRICE_INTERVALS = {
     min: 10000,
     max: 50000
   },
-  top: {
+  high: {
     min: 50000,
     max: 100000
   }
@@ -25,35 +24,12 @@ const housingRooms = mapFilters.querySelector('#housing-rooms');
 const housingGuests = mapFilters.querySelector('#housing-guests');
 const featuresCheckboxes = document.querySelectorAll('[name="features"]');
 
-const filerByType = ({offer}) => {
-  if (housingType.value === 'any') {
-    return true;
-  }
-  return housingType.value === offer.type;
-};
+const filterByType = ({offer}) => housingType.value === 'any' ? true : housingType.value === offer.type;
+const filterByPrice = ({offer}) => housingPrice.value === 'any' ? true : checkPricesRange(offer.price, PRICE_INTERVALS[housingPrice.value].min, PRICE_INTERVALS[housingPrice.value].max);
+const filterByRooms = ({offer}) => housingRooms.value === 'any' ? true : housingRooms.value === offer.rooms.toString();
+const filterByGuests = ({offer}) => housingGuests.value === 'any' ? true : housingGuests.value === offer.guests.toString();
 
-const filterByPrice = ({offer}) => {
-  if (housingPrice.value === 'any') {
-    return true;
-  }
-  return checkPricesRange(offer.price, PRICE_INTERVALS[housingPrice.value].min, PRICE_INTERVALS[housingPrice.value].max);
-};
-
-const filterByRooms = ({ offer }) => {
-  if (housingRooms.value === 'any') {
-    return true;
-  }
-  return housingRooms.value === offer.rooms.toString();
-};
-
-const filterByGuests = ({ offer }) => {
-  if (housingGuests.value === 'any') {
-    return true;
-  }
-  return housingGuests.value === offer.guests.toString();
-};
-
-const filterByFeatures = ({ offer }) =>
+const filterByFeatures = ({offer}) =>
   Array.from(featuresCheckboxes).every((featureCheckbox) => {
     if (!featureCheckbox.checked) {
       return true;
@@ -85,15 +61,9 @@ const compareOffers = (offerA, offerB) => {
 };
 
 const filterOffers = (arr) => {
-  const filteredAds = [];
-  let i = 0;
-  while (filteredAds.length <= OBJECTS_COUNT && i < arr.length) {
-    if (filerByType(arr[i]) && filterByPrice(arr[i]) && filterByRooms(arr[i]) && filterByGuests(arr[i]) && filterByFeatures(arr[i])) {
-      filteredAds.push(arr[i]);
-    }
-    i++;
-  }
-  return filteredAds.sort(compareOffers);
+  const filteredArr = arr.filter((index) => filterByType(index) && filterByPrice(index) && filterByRooms(index) && filterByGuests(index) && filterByFeatures(index))
+    .map((index) => index);
+  return filteredArr.sort(compareOffers);
 };
 
 export {activateFilter, resetFilters, filterOffers};

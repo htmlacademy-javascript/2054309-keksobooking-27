@@ -30,39 +30,39 @@ const showErrorModal = () => {
   }, 5000);
 };
 
-const closeSuccessMessage = () => {
+const onClickSuccessMessage = () => {
   postSuccessMessage.remove();
   document.removeEventListener('keydown', isEscapeKey);
-  document.removeEventListener('click', closeSuccessMessage);
+  document.removeEventListener('click', onClickSuccessMessage);
 };
 
-const closeErrorMessage = () => {
+const onClickErrorMessage = () => {
   postErrorMessage.remove();
   document.removeEventListener('keydown', isEscapeKey);
-  document.removeEventListener('click', closeErrorMessage);
-  errorButton.removeEventListener('click', closeErrorMessage);
+  document.removeEventListener('click', onClickErrorMessage);
+  errorButton.removeEventListener('click', onClickErrorMessage);
 };
 
 const showSuccessMessage = () => {
   document.body.append(postSuccessMessage);
   document.addEventListener('keydown', isEscapeKey);
-  document.addEventListener('click', closeSuccessMessage);
+  document.addEventListener('click', onClickSuccessMessage);
   resetForm(offerInformationForm);
 };
 
 const showErrorMessage = () => {
   document.body.append(postErrorMessage);
   document.addEventListener('keydown', isEscapeKey);
-  document.addEventListener('click', closeErrorMessage);
-  errorButton.addEventListener('click', closeErrorMessage);
+  document.addEventListener('click', onClickErrorMessage);
+  errorButton.addEventListener('click', onClickErrorMessage);
 };
 
 //нужно всплывание, поэтому не стрелочная
 function isEscapeKey(evt) {
   evt.preventDefault();
   if (evt.key === 'Escape') {
-    closeSuccessMessage();
-    closeErrorMessage();
+    onClickSuccessMessage();
+    onClickErrorMessage();
   }
 }
 
