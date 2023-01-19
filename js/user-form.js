@@ -1,5 +1,5 @@
 const offerInformationForm = document.querySelector('.ad-form');
-const uploadButton = offerInformationForm.querySelector('.ad-form__submit');
+const uploadButton = document.querySelector('.ad-form__submit');
 const resetButton = offerInformationForm.querySelector('.ad-form__reset');
 const adFormSlider = offerInformationForm.querySelector('.ad-form__slider');
 const mapFilters = document.querySelector('.map__filters');
