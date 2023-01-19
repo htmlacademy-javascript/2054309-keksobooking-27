@@ -32,33 +32,33 @@ const showErrorModal = () => {
 
 const onClickSuccessMessage = () => {
   postSuccessMessage.remove();
-  document.removeEventListener('keydown', isEscapeKey);
+  document.removeEventListener('keydown', onEscapeKeydown);
   document.removeEventListener('click', onClickSuccessMessage);
 };
 
 const onClickErrorMessage = () => {
   postErrorMessage.remove();
-  document.removeEventListener('keydown', isEscapeKey);
+  document.removeEventListener('keydown', onEscapeKeydown);
   document.removeEventListener('click', onClickErrorMessage);
   errorButton.removeEventListener('click', onClickErrorMessage);
 };
 
 const showSuccessMessage = () => {
   document.body.append(postSuccessMessage);
-  document.addEventListener('keydown', isEscapeKey);
+  document.addEventListener('keydown', onEscapeKeydown);
   document.addEventListener('click', onClickSuccessMessage);
   resetForm(offerInformationForm);
 };
 
 const showErrorMessage = () => {
   document.body.append(postErrorMessage);
-  document.addEventListener('keydown', isEscapeKey);
+  document.addEventListener('keydown', onEscapeKeydown);
   document.addEventListener('click', onClickErrorMessage);
   errorButton.addEventListener('click', onClickErrorMessage);
 };
 
 //нужно всплывание, поэтому не стрелочная
-function isEscapeKey(evt) {
+function onEscapeKeydown(evt) {
   evt.preventDefault();
   if (evt.key === 'Escape') {
     onClickSuccessMessage();
